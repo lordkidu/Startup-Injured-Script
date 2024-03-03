@@ -23,10 +23,25 @@ Citizen.CreateThread(function()
             else
                 TriggerEvent('esx:showNotification', "You are injured, go to the hospital or heal yourself", 5000)
             end
+            StartScreenEffect('Rampage')
             setHurt()
+            ShakeGameplayCam('SMALL_EXPLOSION_SHAKE', 0.12) -- Add blood effect on screen
             Wait(60000) -- wait 60 seconds after the first notification
         elseif hurt and playerHealth > 161 then
             setNotHurt()
+        end
+    end
+end)
+
+Citizen.CreateThread(function()
+    while true do
+        Wait(1000)
+        local playerHealth = GetEntityHealth(GetPlayerPed(-1))
+        if playerHealth > 161 then
+            Wait(1000) -- Wait for 1000 ms
+            if GetEntityHealth(GetPlayerPed(-1)) > 161 then
+                StopScreenEffect('Rampage')
+            end
         end
     end
 end)
