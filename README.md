@@ -29,3 +29,8 @@ With straightforward configuration options, you can effortlessly adjust the scri
 **How It Works:**
 
 When a player’s health drops below a specified level, the script triggers a series of effects and notifications to indicate their injured status. As long as they remain injured, their health will gradually decrease, adding a strategic challenge to surviving in your server's world.
+
+Feel free to join us on discord !
+
+https://discord.gg/WP44YxqXqH
+
