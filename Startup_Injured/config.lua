@@ -10,7 +10,7 @@ Config.HPToRemove = 3
 
 -- Translation
 
-Config.Message = "Vous avez mal, allez a l'hopital pour vous soigner"
+Config.Message = "You are hurt, go to the hospital to get treated."
 
 
 
