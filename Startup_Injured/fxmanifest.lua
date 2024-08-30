@@ -4,8 +4,8 @@ game  'gta5'
 
 author 'ludwikgame'
 description 'A script that kill a player with the time if is life is at 60 or less'
-version '1.0'
+version '1.1'
 
-client_scripts{
-'client.lua',
-}
+shared_script 'config.lua'  
+
+client_script 'client.lua'

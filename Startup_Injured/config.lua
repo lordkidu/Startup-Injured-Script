@@ -2,14 +2,15 @@
 
 Config = {}
 
-Config.OKOKNotify = true -- OKOKNotify or UseESXDefaultNotify
+Config.OKOKNotify = true 
 
-Config.UseESXDefaultNotify = false -- OKOKNotify or UseESXDefaultNotify
+Config.UseESXDefaultNotify = false 
 
+Config.HPToRemove = 3
 
 -- Translation
 
-Config.Message = "You are hurt, go to the hospital to get treated."
+Config.Message = "Vous avez mal, allez a l'hopital pour vous soigner"
 
 
 

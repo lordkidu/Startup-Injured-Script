@@ -1,34 +1,33 @@
-local Config = {
-    UseOkokNotify = true -- You can adjust this value according to your needs
-}
 
 local hurt = false
+local HurtMessage = Config.Message
 
 Citizen.CreateThread(function()
     while true do
-        Wait(60000) -- in ms
-        if hurt and GetEntityHealth(GetPlayerPed(-1)) > 3 then
-            SetEntityHealth(GetPlayerPed(-1), GetEntityHealth(GetPlayerPed(-1)) - 3) -- 3 is the number of HP removed
+        Wait(60000) 
+        if hurt and GetEntityHealth(GetPlayerPed(-1)) > Config.HPToRemove then
+            SetEntityHealth(GetPlayerPed(-1), GetEntityHealth(GetPlayerPed(-1)) - Config.HPToRemove)
         end
     end
 end)
+
 
 Citizen.CreateThread(function()
     while true do
         Wait(1000)
         local playerHealth = GetEntityHealth(GetPlayerPed(-1))
         if playerHealth <= 160 and playerHealth > 0 then
-            local formattedMessage = Config.Message
+
 
             if Config.OKOKNotify and not Config.UseESXDefaultNotify then
-                exports['okokNotify']:Alert("", formattedMessage, 5000, 'error')
+                exports['okokNotify']:Alert("", HurtMessage, 5000, 'error')
             elseif Config.UseESXDefaultNotify and not Config.OKOKNotify then
-                ESX.ShowNotification(formattedMessage)
+                ESX.ShowNotification(HurtMessage)
             end
             StartScreenEffect('Rampage')
             setHurt()
-            ShakeGameplayCam('SMALL_EXPLOSION_SHAKE', 0.12) -- Add blood effect on screen
-            Wait(60000) -- wait 60 seconds after the first notification
+            ShakeGameplayCam('SMALL_EXPLOSION_SHAKE', 0.12)
+            Wait(60000) 
         elseif hurt and playerHealth > 161 then
             setNotHurt()
         end
@@ -40,7 +39,7 @@ Citizen.CreateThread(function()
         Wait(1000)
         local playerHealth = GetEntityHealth(GetPlayerPed(-1))
         if playerHealth > 161 then
-            Wait(1000) -- Wait for 1000 ms
+            Wait(1000) 
             if GetEntityHealth(GetPlayerPed(-1)) > 161 then
                 StopScreenEffect('Rampage')
             end
@@ -63,4 +62,5 @@ function setNotHurt()
     ResetPedMovementClipset(GetPlayerPed(-1))
     ResetPedWeaponMovementClipset(GetPlayerPed(-1))
     ResetPedStrafeClipset(GetPlayerPed(-1))
+
 end
